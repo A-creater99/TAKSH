@@ -3,51 +3,30 @@
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#101827">
-<title>TAKSH</title>
-<link rel="manifest" href="manifest.webmanifest">
+<title>TAKSH App</title>
 <style>
 *{box-sizing:border-box}
-body{
- margin:0;background:#101827;color:white;
- font-family:Arial,sans-serif;padding-bottom:80px
-}
-header{
- padding:25px 20px;background:#17243a;
- border-radius:0 0 25px 25px
-}
-.logo{color:#ffb52e;font-size:30px;font-weight:bold}
-header p{color:#bdc8d8;margin-bottom:0}
-h2{margin:25px 20px 12px}
-.grid{
- display:grid;grid-template-columns:1fr 1fr;
- gap:13px;padding:0 16px
-}
-.card{
- background:#1d2d46;padding:22px 12px;
- border-radius:17px;text-align:center;
- border:1px solid #34445e
-}
+body{margin:0;background:#101827;color:white;font-family:Arial;padding-bottom:85px}
+header{padding:22px;background:#17243a}
+.logo{font-size:30px;font-weight:bold;color:#ffb52e}
+header p{color:#b9c6d8}
+main{padding:17px}
+h2{font-size:21px}
+.hero{background:linear-gradient(120deg,#d97706,#fbbf24);color:#111827;padding:22px;border-radius:18px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.card{background:#1d2d46;padding:18px 12px;border-radius:15px;text-align:center;border:1px solid #34445e}
 .card span{font-size:30px}
-.card h3{font-size:16px;margin:10px 0 5px}
-.card p{font-size:12px;color:#b8c5d6;margin:0}
-.welcome{
- margin:20px 16px;padding:20px;
- background:linear-gradient(120deg,#d97706,#fbbf24);
- color:#111827;border-radius:18px
-}
-button{
- border:0;border-radius:10px;padding:12px 18px;
- background:#111827;color:white;font-weight:bold
-}
-nav{
- position:fixed;bottom:0;left:0;width:100%;
- display:flex;justify-content:space-around;
- background:#17243a;padding:15px
-}
-nav button{background:transparent;color:white}
-#notice{padding:0 20px;color:#ffca60}
+.card h3{font-size:16px}
+.card p{font-size:12px;color:#bdc8d8}
+button{background:#fbbf24;color:#111827;border:0;padding:12px 17px;border-radius:10px;font-weight:bold;margin:5px;cursor:pointer}
+input{width:100%;padding:13px;margin:8px 0;border:1px solid #52627a;border-radius:9px;background:#1d2d46;color:white}
+.page{display:none}
+.page.active{display:block}
+nav{position:fixed;bottom:0;width:100%;display:flex;justify-content:space-around;background:#17243a;padding:12px 2px}
+nav button{background:transparent;color:white;font-size:12px;padding:8px 5px}
+.result{color:#fbbf24;min-height:25px}
 </style>
 </head>
 <body>
@@ -56,56 +35,123 @@ nav button{background:transparent;color:white}
  <p>आपका अपना डिजिटल संसार</p>
 </header>
 
-<div class="welcome">
- <h2>Welcome to TAKSH!</h2>
- <p>नई शुरुआत, नए सपने।</p>
- <button onclick="alert('TAKSH में आपका स्वागत है!')">
- शुरू करें
- </button>
-</div>
+<main>
+<section id="home" class="page active">
+ <div class="hero">
+  <h2>Welcome to TAKSH!</h2>
+  <p>नई शुरुआत, नए सपने।</p>
+  <button onclick="show('games')">Explore Now</button>
+ </div>
+ <h2>Explore Features</h2>
+ <div class="grid">
+  <div class="card" onclick="show('games')"><span>🎮</span><h3>Games</h3><p>खेल और मनोरंजन</p></div>
+  <div class="card" onclick="show('learning')"><span>📚</span><h3>Learning</h3><p>नई चीजें सीखें</p></div>
+  <div class="card" onclick="show('earn')"><span>💰</span><h3>Earn</h3><p>कमाई के तरीके</p></div>
+  <div class="card" onclick="show('profile')"><span>👤</span><h3>Profile</h3><p>अपना अकाउंट</p></div>
+ </div>
+</section>
 
-<h2>Explore TAKSH</h2>
-<div class="grid">
+<section id="games" class="page">
+ <h2>🎮 TAKSH Games</h2>
  <div class="card">
-  <span>🎮</span>
-  <h3>Games</h3>
-  <p>खेल और मनोरंजन</p>
+  <h3>Number Guessing Game</h3>
+  <p>1 से 10 के बीच नंबर का अनुमान लगाओ।</p>
+  <input id="guess" type="number" min="1" max="10" placeholder="अपना नंबर लिखो">
+  <button onclick="play()">Check</button>
+  <button onclick="resetGame()">New Game</button>
+  <p class="result" id="gameResult"></p>
  </div>
- <div class="card">
-  <span>📚</span>
-  <h3>Learning</h3>
-  <p>कुछ नया सीखें</p>
- </div>
- <div class="card">
-  <span>💰</span>
-  <h3>Earn</h3>
-  <p>कमाई की जानकारी</p>
- </div>
- <div class="card">
-  <span>👤</span>
-  <h3>Profile</h3>
-  <p>आपकी प्रोफाइल</p>
- </div>
-</div>
+</section>
 
-<h2>About TAKSH</h2>
-<p style="padding:0 20px;color:#bdc8d8">
- TAKSH एक शुरुआती मोबाइल ऐप प्रोजेक्ट है।
- इसे हम धीरे-धीरे और बेहतर बनाएंगे।
-</p>
-<p id="notice"></p>
+<section id="learning" class="page">
+ <h2>📚 Learning Center</h2>
+ <div class="card">
+  <h3>AutoCAD</h3><p>2D और 3D Drawing सीखें।</p>
+ </div><br>
+ <div class="card">
+  <h3>Civil Engineering</h3><p>Construction और Building की जानकारी।</p>
+ </div><br>
+ <div class="card">
+  <h3>Surveying</h3><p>Leveling और Total Station की जानकारी।</p>
+ </div><br>
+ <div class="card">
+  <h3>Computer Skills</h3><p>बेसिक कंप्यूटर सीखें।</p>
+ </div>
+</section>
+
+<section id="earn" class="page">
+ <h2>💰 Earn Center</h2>
+ <div class="card">
+  <h3>Safe Earning Information</h3>
+  <p>बिना निवेश के काम खोजने की जानकारी।</p>
+  <p>Freelancing, सरकारी योजनाएं और verified internships के बारे में जानें।</p>
+  <p>कोई भी कमाई गारंटीड नहीं है।</p>
+  <p>काम पाने के लिए पहले पैसे या OTP कभी मत देना।</p>
+ </div>
+</section>
+
+<section id="profile" class="page">
+ <h2>👤 My Profile</h2>
+ <div class="card">
+  <p>अपना नाम लिखकर लोकल प्रोफाइल बनाएं।</p>
+  <input id="username" placeholder="आपका नाम">
+  <button onclick="saveProfile()">Save Profile</button>
+  <h3 id="profileName">Guest User</h3>
+  <p id="profileStatus">Guest Mode</p>
+ </div>
+ <p class="result">यह केवल इसी मोबाइल में सेव होने वाली डेमो प्रोफाइल है, असली ऑनलाइन लॉगिन नहीं।</p>
+</section>
+</main>
 
 <nav>
- <button onclick="window.scrollTo(0,0)">🏠 Home</button>
- <button onclick="alert('Profile जल्द आएगी!')">👤 Profile</button>
+ <button onclick="show('home')">🏠<br>Home</button>
+ <button onclick="show('games')">🎮<br>Games</button>
+ <button onclick="show('learning')">📚<br>Learn</button>
+ <button onclick="show('earn')">💰<br>Earn</button>
+ <button onclick="show('profile')">👤<br>Profile</button>
 </nav>
 
 <script>
-if ('serviceWorker' in navigator) {
- window.addEventListener('load',()=>{
-  navigator.serviceWorker.register('./sw.js').catch(()=>{});
- });
+let answer=Math.floor(Math.random()*10)+1;
+
+function show(id){
+ document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+ document.getElementById(id).classList.add('active');
+ window.scrollTo(0,0);
 }
+
+function play(){
+ let n=Number(document.getElementById('guess').value);
+ let r=document.getElementById('gameResult');
+ if(n<1||n>10||!Number.isInteger(n)){
+  r.textContent='1 से 10 तक नंबर डालें।';return;
+ }
+ if(n===answer) r.textContent='🎉 सही जवाब! तुम जीत गए!';
+ else r.textContent=n<answer?'थोड़ा बड़ा नंबर बताओ!':'थोड़ा छोटा नंबर बताओ!';
+}
+
+function resetGame(){
+ answer=Math.floor(Math.random()*10)+1;
+ document.getElementById('guess').value='';
+ document.getElementById('gameResult').textContent='नया गेम शुरू!';
+}
+
+function saveProfile(){
+ let name=document.getElementById('username').value.trim();
+ if(!name){alert('अपना नाम लिखें');return;}
+ localStorage.setItem('taksh_name',name);
+ loadProfile();
+}
+
+function loadProfile(){
+ let name=localStorage.getItem('taksh_name');
+ if(name){
+  document.getElementById('profileName').textContent=name;
+  document.getElementById('profileStatus').textContent='Local Profile Saved';
+  document.getElementById('username').value=name;
+ }
+}
+loadProfile();
 </script>
 </body>
 </html>
