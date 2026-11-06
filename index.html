@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#5b45d6"><meta name="description" content="TAKSH — अपनी दुनिया, अपनी पहचान"><link rel="manifest" href="manifest.webmanifest">
+<title>TAKSH — V2</title>
+<style>
+:root{--p:#5b45d6;--bg:#f4f5fb;--ink:#191827;--muted:#77798a;--line:#e8e7f0}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:Arial,sans-serif;color:var(--ink)}
+header{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--line);padding:13px 16px;display:flex;justify-content:space-between;align-items:center;z-index:3}
+.brand{font-size:25px;font-weight:900;letter-spacing:2px;color:var(--p)}.sub{font-size:11px;color:var(--muted)}
+main{max-width:580px;margin:auto;padding:14px 12px 90px}.card{background:white;border:1px solid var(--line);border-radius:17px;padding:15px;margin-bottom:13px}
+h2{font-size:18px;margin:0 0 12px}p{line-height:1.45}.muted,.small{color:var(--muted)}.small{font-size:12px}
+input,textarea{width:100%;padding:12px;border:1px solid var(--line);border-radius:12px;font-size:15px;margin:6px 0 10px;background:#fff}
+textarea{min-height:82px;resize:vertical}button{border:0;border-radius:12px;padding:11px 14px;background:var(--p);color:white;font-weight:700;font-size:14px}
+button.secondary{background:#f0effb;color:var(--p)}button:disabled{opacity:.5}
+.row{display:flex;align-items:center;gap:10px}.between{justify-content:space-between}.avatar{width:40px;height:40px;border-radius:50%;background:#e8e3ff;color:var(--p);display:grid;place-items:center;font-weight:800;flex-shrink:0}
+.actions{display:flex;gap:8px;border-top:1px solid var(--line);padding-top:10px;margin-top:10px}.actions button{flex:1}
+.preview{width:100%;max-height:340px;object-fit:contain;border-radius:12px;margin-top:8px;background:#111}
+nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--line);display:flex;justify-content:center;gap:7px;padding:9px;z-index:4}
+nav button{background:#f0effb;color:var(--p);min-width:75px;padding:10px 12px}nav button.active{background:var(--p);color:#fff}
+.hidden{display:none!important}.center{text-align:center}.logo{font-size:42px;font-weight:900;letter-spacing:4px;color:var(--p);margin:8px 0}
+.note{background:#fff8df;border:1px solid #f1df9c;border-radius:12px;padding:11px;font-size:12px;color:#6d5814;line-height:1.45}
+label.file{display:inline-block;padding:10px 12px;background:#f0effb;color:var(--p);border-radius:11px;font-weight:700;font-size:13px;margin:2px 0 8px}
+label.file input{display:none}.posttext{white-space:pre-wrap;line-height:1.45;margin:12px 0}
+</style></head><body>
+<header><div><div class="brand">TAKSH</div><div class="sub">अपनी दुनिया • अपनी पहचान</div></div><span class="small">V2 Demo</span></header>
+<main>
+<section id="login" class="card center"><div class="logo">TAKSH</div><p class="muted">अपनी दुनिया • अपनी पहचान</p><h2>स्वागत है!</h2><p class="small">अपना नाम लिखकर डेमो प्रोफाइल खोलें।</p><input id="name" placeholder="आपका नाम"><button style="width:100%" onclick="login()">TAKSH में प्रवेश करें</button><p class="small">यह डेमो लॉगिन है, असली पासवर्ड/OTP लॉगिन नहीं।</p></section>
+<div id="app" class="hidden">
+<section id="home">
+<div class="card"><h2>नई पोस्ट</h2><textarea id="caption" placeholder="क्या साझा करना चाहते हैं?"></textarea>
+<label class="file">📷 फोटो / वीडियो चुनें<input id="media" type="file" accept="image/*,video/*" onchange="previewMedia()"></label>
+<div id="previewBox"></div><button onclick="publish()">पोस्ट साझा करें</button></div>
+<div id="feed"></div>
+</section>
+<section id="profile" class="hidden">
+<div class="card center"><div class="avatar" id="avatar" style="width:70px;height:70px;margin:0 auto 10px;font-size:25px">A</div><h2 id="pname">आप</h2><p class="muted">TAKSH सदस्य</p><b id="count">0</b><div class="small">आपकी पोस्ट</div></div>
+<div class="card"><h2>प्रोफाइल सेटिंग</h2><input id="bio" placeholder="अपने बारे में (वैकल्पिक)"><button class="secondary" onclick="saveBio()">बायो सेव करें</button><p class="small" id="bioText"></p><button class="secondary" onclick="logout()">लॉग आउट</button></div>
+</section>
+<section id="about" class="hidden"><div class="card"><h2>TAKSH V2</h2><p><b>Founder:</b> Arju Mishra</p><p><b>Tagline:</b> अपनी दुनिया • अपनी पहचान</p><p>फीचर: डेमो प्रोफाइल, टेक्स्ट पोस्ट, फोटो/वीडियो प्रीव्यू, लाइक और कमेंट।</p></div><div class="note">महत्वपूर्ण: यह अभी केवल आपके मोबाइल/ब्राउज़र में चलने वाला प्रोटोटाइप है। पोस्ट इंटरनेट पर दूसरे लोगों को नहीं दिखतीं। असली अकाउंट, ऑनलाइन स्टोरेज और सुरक्षित सर्वर बाद में जोड़ने होंगे।</div></section>
+</div></main>
+<nav id="nav" class="hidden"><button class="active" onclick="tab('home',this)">होम</button><button onclick="tab('profile',this)">प्रोफाइल</button><button onclick="tab('about',this)">जानकारी</button></nav>
+<script>
+let user='',selected=null,items=[];
+function login(){let n=document.getElementById('name').value.trim();if(!n){alert('अपना नाम लिखें।');return;}user=n;document.getElementById('login').classList.add('hidden');document.getElementById('app').classList.remove('hidden');document.getElementById('nav').classList.remove('hidden');document.getElementById('pname').textContent=user;document.getElementById('avatar').textContent=user[0].toUpperCase();render();}
+function logout(){user='';document.getElementById('app').classList.add('hidden');document.getElementById('nav').classList.add('hidden');document.getElementById('login').classList.remove('hidden');}
+function tab(id,b){['home','profile','about'].forEach(x=>document.getElementById(x).classList.toggle('hidden',x!==id));document.querySelectorAll('nav button').forEach(x=>x.classList.remove('active'));b.classList.add('active');}
+function previewMedia(){let f=document.getElementById('media').files[0];selected=f||null;let box=document.getElementById('previewBox');box.innerHTML='';if(!f)return;let url=URL.createObjectURL(f),el=document.createElement(f.type.startsWith('video/')?'video':'img');el.src=url;el.className='preview';if(el.tagName==='VIDEO')el.controls=true;box.append(el);}
+function publish(){let text=document.getElementById('caption').value.trim(),f=selected;if(!text&&!f){alert('पोस्ट में टेक्स्ट या फोटो/वीडियो जोड़ें।');return;}let mediaUrl=f?URL.createObjectURL(f):'',type=f?(f.type.startsWith('video/')?'video':'image'):'';items.unshift({name:user,text,mediaUrl,type,likes:0,comments:[]});document.getElementById('caption').value='';document.getElementById('media').value='';document.getElementById('previewBox').innerHTML='';selected=null;render();}
+function like(i){items[i].likes++;render();}
+function comment(i){let v=prompt('कमेंट लिखें:');if(v&&v.trim()){items[i].comments.push(v.trim());render();}}
+function render(){let feed=document.getElementById('feed');feed.innerHTML='';items.forEach((p,i)=>{let c=document.createElement('article');c.className='card';let row=document.createElement('div');row.className='row';let a=document.createElement('div');a.className='avatar';a.textContent=p.name[0].toUpperCase();let n=document.createElement('b');n.textContent=p.name;row.append(a,n);c.append(row);if(p.text){let t=document.createElement('div');t.className='posttext';t.textContent=p.text;c.append(t);}if(p.mediaUrl){let m=document.createElement(p.type==='video'?'video':'img');m.src=p.mediaUrl;m.className='preview';if(p.type==='video')m.controls=true;c.append(m);}let acts=document.createElement('div');acts.className='actions';let l=document.createElement('button');l.className='secondary';l.textContent='♥ लाइक '+p.likes;l.onclick=()=>like(i);let cm=document.createElement('button');cm.className='secondary';cm.textContent='कमेंट '+p.comments.length;cm.onclick=()=>comment(i);acts.append(l,cm);c.append(acts);p.comments.forEach(x=>{let q=document.createElement('p');q.className='small';q.textContent='💬 '+x;c.append(q)});feed.append(c);});document.getElementById('count').textContent=items.length;}
+function saveBio(){document.getElementById('bioText').textContent=document.getElementById('bio').value.trim();}
+</script><script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}));}</script></body></html>
