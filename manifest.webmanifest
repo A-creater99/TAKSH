@@ -1,0 +1,9 @@
+{
+  "name": "TAKSH - अपनी दुनिया अपनी पहचान",
+  "short_name": "TAKSH",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f4f5fb",
+  "theme_color": "#5b45d6",
+  "description": "TAKSH social app demo"
+}
